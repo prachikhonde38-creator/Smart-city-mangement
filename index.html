@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart City Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+
+    <div class="logo">
+        <div class="logo-icon">🏙️</div>
+        <div>
+            <h2>SmartCity</h2>
+            <span>Management System</span>
+        </div>
+    </div>
+
+    <nav>
+        <button class="nav-btn active" onclick="showPage('dashboard', this)">
+            🏠 <span>Dashboard</span>
+        </button>
+
+        <button class="nav-btn" onclick="showPage('citizens', this)">
+            👥 <span>Citizens</span>
+        </button>
+
+        <button class="nav-btn" onclick="showPage('emergency', this)">
+            🚨 <span>Emergency Queue</span>
+        </button>
+
+        <button class="nav-btn" onclick="showPage('undo', this)">
+            ↩️ <span>Undo Stack</span>
+        </button>
+
+        <button class="nav-btn" onclick="showPage('roads', this)">
+            🛣️ <span>Road Network</span>
+        </button>
+
+        <button class="nav-btn" onclick="showPage('city-tree', this)">
+            🌳 <span>City Structure</span>
+        </button>
+    </nav>
+
+    <div class="sidebar-bottom">
+        <button class="theme-btn" onclick="toggleTheme()">
+            🌙 <span>Dark Mode</span>
+        </button>
+
+        <div class="system-status">
+            <span class="status-dot"></span>
+            System Online
+        </div>
+    </div>
+
+</aside>
+
+
+<!-- MAIN CONTENT -->
+<main class="main">
+
+    <!-- TOP BAR -->
+    <header class="topbar">
+        <div>
+            <p class="small-title">SMART CITY MANAGEMENT</p>
+            <h1 id="pageTitle">Dashboard</h1>
+        </div>
+
+        <div class="top-right">
+            <div class="date-box">
+                📅 <span id="dateTime"></span>
+            </div>
+
+            <div class="profile">
+                👩🏻‍💻
+            </div>
+        </div>
+    </header>
+
+
+    <!-- DASHBOARD -->
+    <section id="dashboard" class="page active-page">
+
+        <div class="hero">
+            <div>
+                <span class="hero-tag">🌟 DIGITAL CITY PLATFORM</span>
+                <h2>Welcome to the<br><strong>Smart City</strong> System</h2>
+                <p>
+                    Manage citizens, emergencies, roads and city structures
+                    using powerful Data Structures.
+                </p>
+
+                <button class="primary-btn" onclick="showPage('citizens')">
+                    👥 Manage Citizens →
+                </button>
+            </div>
+
+            <div class="hero-city">
+                🏙️
+            </div>
+        </div>
+
+
+        <!-- STATS -->
+        <div class="stats-grid">
+
+            <div class="stat-card green">
+                <div class="stat-icon">👥</div>
+                <div>
+                    <span>Total Citizens</span>
+                    <h2 id="citizenCount">0</h2>
+                </div>
+            </div>
+
+            <div class="stat-card red">
+                <div class="stat-icon">🚨</div>
+                <div>
+                    <span>Emergency Cases</span>
+                    <h2 id="emergencyCount">0</h2>
+                </div>
+            </div>
+
+            <div class="stat-card purple">
+                <div class="stat-icon">↩️</div>
+                <div>
+                    <span>Stack Actions</span>
+                    <h2 id="stackCount">0</h2>
+                </div>
+            </div>
+
+            <div class="stat-card blue">
+                <div class="stat-icon">🛣️</div>
+                <div>
+                    <span>Road Connections</span>
+                    <h2 id="roadCount">0</h2>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- DATA STRUCTURES -->
+        <div class="section-title">
+            <h2>⚙️ Data Structures</h2>
+            <span>Core system modules</span>
+        </div>
+
+        <div class="structure-grid">
+
+            <div class="structure-card">
+                <div class="structure-icon">🔗</div>
+                <h3>Linked List</h3>
+                <p>Citizen Management</p>
+                <span>Dynamic Data</span>
+            </div>
+
+            <div class="structure-card">
+                <div class="structure-icon">🚨</div>
+                <h3>Queue</h3>
+                <p>Emergency Management</p>
+                <span>FIFO</span>
+            </div>
+
+            <div class="structure-card">
+                <div class="structure-icon">📚</div>
+                <h3>Stack</h3>
+                <p>Undo Operations</p>
+                <span>LIFO</span>
+            </div>
+
+            <div class="structure-card">
+                <div class="structure-icon">🕸️</div>
+                <h3>Graph</h3>
+                <p>Road Network</p>
+                <span>Connections</span>
+            </div>
+
+            <div class="structure-card">
+                <div class="structure-icon">🌳</div>
+                <h3>Tree</h3>
+                <p>City Structure</p>
+                <span>Hierarchy</span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CITIZENS -->
+    <section id="citizens" class="page">
+
+        <div class="section-heading">
+            <div>
+                <span class="module-label">🔗 LINKED LIST</span>
+                <h2>Citizen Management</h2>
+                <p>Add and manage citizens dynamically.</p>
+            </div>
+        </div>
+
+        <div class="form-card">
+
+            <input type="number" id="citizenId" placeholder="Citizen ID">
+
+            <input type="text" id="citizenName" placeholder="Citizen Name">
+
+            <button class="primary-btn" onclick="addCitizen()">
+                ➕ Add Citizen
+            </button>
+
+        </div>
+
+        <div class="search-box">
+            🔍
+            <input
+                type="text"
+                id="searchCitizen"
+                placeholder="Search citizen..."
+                onkeyup="displayCitizens()"
+            >
+        </div>
+
+        <div id="citizenList" class="citizen-list"></div>
+
+    </section>
+
+
+    <!-- EMERGENCY -->
+    <section id="emergency" class="page">
+
+        <div class="section-heading">
+            <div>
+                <span class="module-label red-label">🚨 QUEUE — FIFO</span>
+                <h2>Emergency Management</h2>
+                <p>First emergency added will be handled first.</p>
+            </div>
+        </div>
+
+        <div class="form-card emergency-form">
+
+            <input
+                type="text"
+                id="emergencyName"
+                placeholder="Emergency description"
+            >
+
+            <select id="priority">
+                <option value="Normal">🟢 Normal</option>
+                <option value="High">🟡 High</option>
+                <option value="Critical">🔴 Critical</option>
+            </select>
+
+            <button class="danger-btn" onclick="addEmergency()">
+                🚨 Add Emergency
+            </button>
+
+        </div>
+
+        <div class="queue-info">
+            <div>
+                <span>Queue Status</span>
+                <strong id="queueStatus">Empty</strong>
+            </div>
+
+            <button class="primary-btn" onclick="handleEmergency()">
+                ✓ Handle First
+            </button>
+        </div>
+
+        <div id="emergencyList" class="emergency-list"></div>
+
+    </section>
+
+
+    <!-- UNDO STACK -->
+    <section id="undo" class="page">
+
+        <div class="section-heading">
+            <div>
+                <span class="module-label purple-label">📚 STACK — LIFO</span>
+                <h2>Undo Operations</h2>
+                <p>Last action added will be removed first.</p>
+            </div>
+        </div>
+
+        <div class="form-card">
+
+            <input
+                type="text"
+                id="actionInput"
+                placeholder="Enter an action..."
+            >
+
+            <button class="purple-btn" onclick="addAction()">
+                📥 Push Action
+            </button>
+
+            <button class="outline-btn" onclick="undoAction()">
+                ↩️ Undo
+            </button>
+
+        </div>
+
+        <div class="stack-container">
+
+            <div class="stack-title">
+                <span>📚 Stack</span>
+                <small>TOP ↓</small>
+            </div>
+
+            <div id="stackList"></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ROADS -->
+    <section id="roads" class="page">
+
+        <div class="section-heading">
+            <div>
+                <span class="module-label blue-label">🕸️ GRAPH</span>
+                <h2>Road Network</h2>
+                <p>Connect different areas of the smart city.</p>
+            </div>
+        </div>
+
+        <div class="form-card">
+
+            <select id="area1">
+                <option value="City Center">City Center</option>
+                <option value="Airport">Airport</option>
+                <option value="Hospital">Hospital</option>
+                <option value="Railway Station">Railway Station</option>
+                <option value="University">University</option>
+            </select>
+
+            <select id="area2">
+                <option value="Airport">Airport</option>
+                <option value="Hospital">Hospital</option>
+                <option value="Railway Station">Railway Station</option>
+                <option value="University">University</option>
+                <option value="City Center">City Center</option>
+            </select>
+
+            <button class="blue-btn" onclick="addRoad()">
+                🛣️ Connect Road
+            </button>
+
+        </div>
+
+        <div class="network-map">
+
+            <div class="map-node center">🏙️<span>City Center</span></div>
+            <div class="map-node airport">✈️<span>Airport</span></div>
+            <div class="map-node hospital">🏥<span>Hospital</span></div>
+            <div class="map-node railway">🚆<span>Railway</span></div>
+            <div class="map-node university">🎓<span>University</span></div>
+
+            <div class="road-line line1"></div>
+            <div class="road-line line2"></div>
+            <div class="road-line line3"></div>
+            <div class="road-line line4"></div>
+
+        </div>
+
+        <div id="roadList" class="road-list"></div>
+
+    </section>
+
+
+    <!-- CITY TREE -->
+    <section id="city-tree" class="page">
+
+        <div class="section-heading">
+            <div>
+                <span class="module-label green-label">🌳 TREE STRUCTURE</span>
+                <h2>City Structure</h2>
+                <p>Hierarchical representation of the smart city.</p>
+            </div>
+        </div>
+
+        <div class="tree-container">
+
+            <div class="tree-root">
+                🏙️
+                <strong>SMART CITY</strong>
+            </div>
+
+            <div class="tree-line"></div>
+
+            <div class="tree-branches">
+
+                <div class="tree-branch">
+                    <div class="tree-node">🏢 Central Zone</div>
+                    <div class="children">
+                        <span>🏦 Bank</span>
+                        <span>🏫 School</span>
+                        <span>🏪 Market</span>
+                    </div>
+                </div>
+
+                <div class="tree-branch">
+                    <div class="tree-node">🏥 Health Zone</div>
+                    <div class="children">
+                        <span>🏥 Hospital</span>
+                        <span>💊 Pharmacy</span>
+                        <span>🚑 Ambulance</span>
+                    </div>
+                </div>
+
+                <div class="tree-branch">
+                    <div class="tree-node">🏠 Residential Zone</div>
+                    <div class="children">
+                        <span>🏘️ Homes</span>
+                        <span>🌳 Parks</span>
+                        <span>🛒 Stores</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- TOAST -->
+<div id="toast" class="toast">
+    <span id="toastIcon">✓</span>
+    <span id="toastMessage">Success</span>
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
